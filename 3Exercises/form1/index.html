@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>form1</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7\css\bootstrap.min.css">
+	<script type="text/javascript" src="jquery-3.1.1.min.js"></script> 
+	<script type="text/javascript" src="bootstrap-3.3.7\js\bootstrap.min.js"></script> 
+</head>
+<body>
+
+<!--       <form class="form-horizontal" role="form"> -->  
+<!-- form表单默认提交你所填的数据，而你并没有写跳转的网页（form中有个action属性），因为连接为空 他就会刷新一次 导致你每次都是空的 -->
+         <br>
+         <div class="form-group">
+	      	 <label class="col-sm-1 control-label" style="text-align: right">名称</label>
+	      	 <input type="text" id="in1" class="col-sm-8 form-control" style="width: 400px">
+	      	 <button class="btn btn-primary" style="margin-left: 20px" id="b1">验证</button>
+	      	 <p class="text-muted" style="margin-left: 115px" id="check1"></p>      	 
+      	 </div>
+         <div class="form-group">
+	      	 <label class="col-sm-1 control-label" style="text-align: right">名称</label>
+	      	 <input type="text" id="in2" class="col-sm-7 form-control" style="width: 400px">
+	      	 <button class="btn btn-primary" style="margin-left: 20px" id="b2">验证</button>
+	      	 <p class="text-muted" style="margin-left: 115px" id="check2"></p> 
+      	 </div>
+         <div class="form-group">
+	      	 <label class="col-sm-1 control-label" style="text-align: right">名称</label>
+	      	 <input type="text" id="in3" class="col-sm-7 form-control" style="width: 400px">
+	      	 <button class="btn btn-primary" style="margin-left: 20px" id="b3">验证</button>
+	      	 <p class="text-muted" style="margin-left: 115px" id="check3"></p> 
+      	 </div>
+<!--       </form> -->
+</body>
+<script type="text/javascript">
+	$("#b1").click(function(){
+		var val=$("#in1").val();
+		var len1=getstrlen(val);
+		console.log(len);
+		if(len1<4||len1>16){
+			$("#check1").html("必填，长度为4~16个字符");
+		}
+		else{
+			$("#check1").html("名称格式正确");
+		}
+	});
+	$("#b2").click(function(){
+		var val=$("#in2").val();
+		if(val==""){
+			$("#check2").html("姓名不能为空").css("color","red");
+			$("#in2").css("border-color","red");
+		}
+		else{
+			$("#check2").html("名称格式正确");
+		}
+	});
+	$("#b3").click(function(){
+		var val=$("#in3").val();
+		var len3=getstrlen(val);
+		if(len3<4||len3>16){
+			$("#check3").html("");
+		}
+		else{
+			$("#check3").html("名称格式正确").css("color","green");
+			$("#in3").css("border-color","green");
+		}
+	});
+	// 编码在 0x00-0xFF, 范围为英文，其他的认作中文,String.charCodeAt() 拿到字符编码值
+	function getstrlen(str){
+		var enlen=0;
+		var chlen=0;
+		for(var i=0;i<str.length;i++){
+			var code=str.charCodeAt(i);
+			if(code<=0xFF)
+				enlen++;
+		    else
+                chlen++;
+		}
+		return enlen+chlen*2;
+	}
+</script>
+</html>

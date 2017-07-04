@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单非空校验</title>
+    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+    <style>
+    .wait{color: green}
+    </style>
+</head>
+<body>
+<input type="text" class="ipt">
+    <script type="text/javascript">
+        $(function(){
+            $(".ipt").blur(function(){
+                if($(this).val()==""){
+                $(".ipt").val("请输入关键词").addClass("wait");
+                }
+            });
+            $(".ipt").focus(function(){
+            if($(".ipt").val()=="请输入关键词"){
+            $(".ipt").val("").removeClass("wait");
+            }
+            });
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>form3</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7\css\bootstrap.min.css">
+	<script type="text/javascript" src="jquery-3.1.1.min.js"></script> 
+	<script type="text/javascript" src="bootstrap-3.3.7\js\bootstrap.min.js"></script> 
+</head>
+<body>
+    <br>
+     <div class="radio" style="margin-left:120px">
+     	<label class="col-sm-1">
+     		<input type="radio" name="op" value="1">在校生
+     	</label>
+     	<label class="col-sm-1">
+     		<input type="radio" name="op" value="2">非在校生
+     	</label>
+     </div>
+     <br>
+	<div class="form-group" id="school" style="margin-top:50px;">
+			<label for="name" class="col-sm-1" style="text-align:right;">学校</label>
+			<select id="province" class="form-control col-sm-4" style="width: 300px">
+				<option>四川</option>
+				<option>江苏</option>
+				<option>陕西</option>
+			</select>
+			<select id="sch" class="form-control col-sm-4" style="width: 300px; margin-left:10px">
+				<option>四川大学</option>
+				<option>电子科技大学</option>
+				<option>西南财经大学</option>
+			</select>
+			<select id="sch" class="form-control " style="width: 300px; margin-left:10px;display: none;">
+				<option>南京大学</option>
+				<option>东南大学</option>
+				<option>南京航空航天大学</option>
+			</select>
+			<select id="sch" class="form-control " style="width: 300px; margin-left:10px;display: none;">
+				<option>西安交通大学</option>
+				<option>西北工业大学</option>
+				<option>陕西师范大学</option>
+			</select>
+	</div>
+	<div class="form-group" id="company" style="margin-top:50px;display: none;">
+		<label class="col-sm-1 control-label" style="text-align: right">就业单位</label>
+	    <input type="text" id="in1" class=" form-control" style="width: 400px">
+
+	</div>
+</body>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#province").change(function(){
+        $("#province option").each(function(i,o){
+            if($(this).attr("selected"))
+            {
+                $("#sch").hide();
+                $("#sch").eq(i).show();
+            }
+       });
+   });
+    $("#province").change();
+});
+
+// $("input").click(function(){
+// 	  var val=$('input:radio[name="op"]:checked').val(); 
+// 	  if(val==null)
+// 	  	alert("请选择");
+// 	  else if(val==1){
+// 	  	alert("请选择学校");
+// 	  	$("#company").hide();
+// 	    $("#school").show();
+// 	  }
+// 	  else {
+// 	  	alert("请选择就业单位");
+// 	  	$("#school").hide();
+// 	    $("#company").show();
+// 	  }
+// })
+
+
+// function add_sch(){
+//     // 创建select
+//     $("#mySelect").append("<select></select>");
+//     // 添加选项
+//     $("<option></option>").val('0').text("黑").appendTo($("select"));
+//     $("<option></option>").val('1').text("白").appendTo($("select"));
+//     // 设置默认选项
+//     $("select").val('1');
+
+// }
+
+</script>
+</html>
