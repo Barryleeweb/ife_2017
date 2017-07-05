@@ -2,7 +2,6 @@
   margin:0px;
   padding: 0px;
   font-family: "微软雅黑";
-  box-sizing: border-box; /*添加*/
 }
 
 .wrap{
@@ -10,18 +9,14 @@
   padding: 20px;
   background-color: #eee;
   border:1px solid #999;
+  overflow: hidden;  /*清除浮动，解决高度塌陷*/
 }
 
 .left{
-  display: inline-block;
-  width: 200px;  /*宽度为内容+padding+border*/
+  float: left;
+  width: 158px;  /*宽度为内容+padding+border*/
   padding: 20px;
   background-color: #fff;
-  border:1px solid #999;
-  vertical-align: top;
-}
-
-.left img{
   border:1px solid #999;
 }
 
@@ -32,13 +27,11 @@
 }
 
 .center{
-  display: inline-block;
+  margin-left: 220px; /*左div浮动后，中间div到了最左边*/
+  margin-right: 140px; 
   padding: 20px;
   background-color: #fff;
   border:1px solid #999;
-  width: calc(100% - 200px - 120px - 40px);
-  vertical-align: top;
-  margin: 0 20px;
 }
 
 .center p{
@@ -48,9 +41,9 @@
 
 
 .right{
-  display: inline-block;
+  float: right;
   text-align: center;
-  width: 120px;
+  width: 78px;
   padding: 20px;
   background-color: #fff;
   border:1px solid #999;
@@ -58,5 +51,4 @@
 
 .right img{
   margin-bottom: 10px;
-  border:1px solid #999;
 }

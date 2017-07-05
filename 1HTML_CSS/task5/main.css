@@ -1,0 +1,156 @@
+*{margin:0px;padding: 0px;font-family: "微软雅黑"}
+
+body{
+    background-color: #E7DFDF;
+}
+
+header{
+	background-color: #332E2E;
+}
+
+header ul{
+	float: right;
+	margin-right: 20px;
+}
+
+header ul li{
+	float: left;
+	line-height: 60px;
+	margin-right: 20px;
+/*	display: inline-block;*/
+}
+
+header ul li a{
+	color: #fff;
+}
+
+header ul li a:hover{
+	color: #9D9B9B;
+}
+
+.all{
+  position: relative;
+}
+
+main{
+  margin-right: 420px;
+}
+
+aside{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 400px;
+  background-color: #fff;
+}
+.wrap{
+  width: 98%;
+  margin: 20px auto;
+  background-color: #fff;
+  box-shadow: 2px 2px 5px #6E6B6B; /*水平，垂直位置，模糊距离*/
+  border:1px solid #aaa; /*解决margin-top合并问题*/
+/*  padding: 10px 10px;*/
+}
+
+.content{  
+  width: 97%;
+  margin: 20px auto;
+}
+.content h2{  
+  padding: 15px 0px;
+}
+.content h3{  
+  padding: 15px 0px;
+}
+
+.content p{  
+  text-indent: 2em;
+  padding: 15px 0px;
+}
+
+.content ul li{  
+  list-style: none;
+  margin-left: 2em;
+}
+
+.picture {
+	display: inline-block;
+	width: 200px;
+	border: 2px solid #E7DFDF;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+.picture img{
+	margin: 10px;
+}
+
+.content ol li{  
+  margin-left: 2em;
+}
+
+.content table{
+	width: 98%; 
+	/*border: none;*/
+	border-collapse: collapse;
+	border:rgb(204, 204, 204);
+}
+
+th{
+	background-color: black;
+	color: white;
+	text-align: left;
+}
+tr:last-child{
+    background-color: rgb(204, 204, 204);
+}
+
+.formclass span{
+    position: absolute;   /*绝对定位，不考虑初始位置，直接都距离右边60%，右对齐*/
+    right: 60%;
+}
+
+.formclass label{      /*后代选择器，后面不能跟分组选择器，只会作用第一个。*/
+    position: relative;   /*刚开始左对齐，从左侧初始位置向右偏移40%*/
+    left: 40%;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.formclass p{  /*p不能再上面跟label等写在一起，不然会影响其他地方的P*/
+    position: relative;   
+    left: 40%;
+    color:  rgb(204, 204, 204);
+    font-size: 12px;
+    padding: 0px 0px 20px 0px;
+}
+.formclass select{
+    position: relative;   
+    left: 40%;
+    margin-bottom: 20px;
+}
+.formclass textarea{
+    position: relative;   
+    left: 40%;
+    margin-bottom: 20px;
+}
+
+textarea{
+	width: 55%;
+	height: 100px;
+}
+
+input[type="submit"] {
+	width: 98%;
+	height: 50px;
+	background-color: blue;
+	color: white;
+	border-radius: 10px;
+	cursor: pointer;
+}
+footer{
+    color: #fff;
+    text-align:center;
+    line-height: 50px;
+	background-color: #000;
+	height: 50px;
+}
