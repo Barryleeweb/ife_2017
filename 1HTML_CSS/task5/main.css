@@ -1,7 +1,10 @@
 *{margin:0px;padding: 0px;font-family: "微软雅黑"}
 
+/*html {overflow-x:hidden;}*/
+
 body{
     background-color: #E7DFDF;
+    overflow-x:hidden;  /* 去掉水平滚动条*/
 }
 
 header{
@@ -30,6 +33,7 @@ header ul li a:hover{
 
 .all{
   position: relative;
+  margin: 20px;
 }
 
 main{
@@ -42,6 +46,8 @@ aside{
   top: 0px;
   width: 400px;
   background-color: #fff;
+  box-shadow: 2px 2px 5px #6E6B6B;
+  border:1px solid #aaa;
 }
 .wrap{
   width: 98%;
