@@ -1,10 +1,10 @@
 *{margin:0px;padding: 0px;font-family: "微软雅黑"}
 
-/*html {overflow-x:hidden;}*/
+/*html {overflow-x:hidden;}*/  /* 去掉水平滚动条*/
 
 body{
     background-color: #E7DFDF;
-    overflow-x:hidden;  /* 去掉水平滚动条*/
+   /* overflow-x:hidden;  *//* 去掉水平滚动条,由右侧p标签引起，宽度为父容器宽度，右移出了父容器*/
 }
 
 header{
@@ -124,10 +124,11 @@ tr:last-child{
 }
 .formclass p{  /*p不能再上面跟label等写在一起，不然会影响其他地方的P*/
     position: relative;   
-    left: 40%;
+    left: 40%;    /*这里p元素，宽度为父元素宽度，右移后宽度移出到浏览器右边，造成出现水平滚动条*/
     color:  rgb(204, 204, 204);
     font-size: 12px;
     padding: 0px 0px 20px 0px;
+    margin-right: 40%; /*解决出现水平滚动条，设置margin将p标签宽度减少到父容器内*/
 }
 .formclass select{
     position: relative;   
