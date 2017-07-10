@@ -136,7 +136,7 @@ main{
 .content_middle{
   height: 200px;
   margin-bottom: 30px;
-  background-color: #ccc;
+/*  background-color: #ccc;*/
 }
 
 .mid1,.mid2{
@@ -187,7 +187,7 @@ main{
 .content_bottom{
   height: 643px;
   margin-bottom: 30px;
-  background-color: #ccc;
+/*  background-color: #ccc;*/
 }
 
 .bot_left{
@@ -225,18 +225,12 @@ main{
   color: #767777;
   font-family: "宋体";  
   text-align:justify;
-  text-indent:2em;
 }
 
 .bot_body p:nth-child(1){
   float: left;
   font-size: 70px;
   color: #f5e327;  
-  text-indent:0em;
-}
-
-.bot_body p:nth-child(2){
-  text-indent:0em;
 }
 
 .bot_body img{
