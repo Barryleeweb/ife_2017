@@ -50,8 +50,10 @@ header li{
 .i_2{
 	display: inline-block; /* span标签必须用inline-block图片才能显示出来*/
 	width: 14px;
-	height: 17px;
+	height: 16px;
 	background: url(./task7_sprit.png) -40px -60px;
+	margin-right: 5px;
+	vertical-align: middle;
 }
 header li:nth-child(6){
   color: #e74f4d;
@@ -60,9 +62,24 @@ header li:nth-child(6){
 .sec-part1{
   width: 1280px;
   height: 690px;
-  background: url(./task7_head.jpg);
+  background: url(./task7_head.jpg) no-repeat;
 }
 
+.sec-part1 p{
+	position: relative;
+	left:125px; 
+	top:230px;
+	font-size: 21px;
+	color:#fff;
+	margin-bottom: 66px;
+}
+
+.sec-part1 span{
+	display: block;
+	font-size: 60px;
+	margin-bottom: 32px;
+	margin-left: -10px; 
+}
 .begin-button{
 	width: 330px;
 	height: 65px;
@@ -71,7 +88,7 @@ header li:nth-child(6){
 	font-size: 30px;
 	position: relative;
 	left: 125px;
-	top:430px;
+	top:230px; 
 	border: none;
 	cursor: pointer;
 }
