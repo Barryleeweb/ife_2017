@@ -5,8 +5,8 @@
     <title>IFE JavaScript Task 01</title>
     <style type="text/css">
      *{margin: 0px;padding: 0px;}
-      p{float:left;width: 50px;height: 50px;background-color: red;color: white;text-align: center;line-height: 50px;margin: 5px;}
-      button{background-color: white;border: 1px solid #ccc;border-radius: 3px;cursor: pointer; }
+      p{float:left;width: 20px;background-color: red;color: white;text-align: center;margin: 5px;}
+      button{background-color: white;border: 1px solid #ccc;border-radius: 3px;cursor: pointer;margin-right: 5px;}
 
     </style>
   </head>
@@ -18,8 +18,9 @@
       <button id="right_in">右侧入</button>
       <button id="left_out">左侧出</button>
       <button id="right_out">右侧出</button>
+      <button id="rank">排序</button>
     </div>
-    <div id="append_div">
+    <div id="append_div" style="overflow: auto;height: 100px;">
 
     </div>
 
@@ -29,16 +30,18 @@
     var right_in=document.getElementById("right_in");
     var left_out=document.getElementById("left_out");
     var right_out=document.getElementById("right_out");
+    var rank=document.getElementById("rank");
     // 创建新节点并赋值
     function createdom(){
        var new_dom=document.createElement("p");
        var input_data=document.getElementById("input_data");
-       if(input_data.value==''){
-          alert("请输入数值");
+       if(input_data.value<10||input_data.value>100){
+          alert("请输入10-100的数值");
           return ;
        }
        else{
-          new_dom.innerHTML=input_data.value;
+          // new_dom.innerHTML=input_data.value;
+          new_dom.style.height=input_data.value+'px';
        }
        //console.log(new_dom);
        return new_dom;
@@ -63,6 +66,40 @@
     }
     right_out.onclick = function(){
        append_div.removeChild(append_div.lastChild);
+    }
+    function getdata(){
+      var ps=append_div.getElementsByTagName("p");
+      var data=[];
+      for(var i=0;i<ps.length;i++){
+        var p_data=parseInt(ps[i].style.height);
+        data.push(p_data);
+      }
+      return data;
+    }
+    function sortdata(data){
+      for(var i=0;i<data.length;i++){
+        for(var j=i+1;j<data.length;j++)
+          if(data[i]>data[j]){
+            var tmp=data[j]
+            data[j]=data[i];
+            data[i]=tmp;
+          }
+      }
+      return data;
+    }
+    function render(data){
+      var ps=append_div.getElementsByTagName("p");
+      for(var i=0;i<data.length;i++){
+         ps[i].style.height=data[i]+'px';
+      }
+      console.log(ps);
+    }
+    rank.onclick = function(){
+       var data=getdata();
+       var sort=sortdata(data);
+       render(sort);
+       //console.log(sort);
+
     }
 })();
 </script>
