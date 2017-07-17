@@ -47,9 +47,10 @@ var aqiData = [
 
   // 动态创建li标签
   dom_ul= document.getElementById("aqi-list");
+  var chinese = new Array('一','二','三','四','五','六','七','八','九','十');//十以内简单中文序号
   data.forEach((d,index) => {
     dom_li= document.createElement("li");
-    dom_li.innerHTML= '第'+ (index+1) +'名:' + d;
+    dom_li.innerHTML= '第'+ chinese[index] +'名:' + d;
     dom_ul.appendChild(dom_li);
   });
   

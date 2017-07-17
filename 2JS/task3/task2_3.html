@@ -39,6 +39,20 @@ function getData() {
   coding here
   */
 
+  var dom_ul=document.getElementById("source");
+  var dom_li=dom_ul.getElementsByTagName("li");
+  //console.log(dom_li);
+
+  //DOM的遍历用for，不要用for in
+  var data=[];
+  for(var i=0;i<dom_li.length;i++){
+    //console.log(dom_li[i].innerHTML.split("空气质量："));
+    //console.log(dom_li[i].childNodes[1].innerHTML);
+    var data_city=dom_li[i].innerHTML.split("空气质量：")[0];
+    var data_num=dom_li[i].childNodes[1].innerHTML;
+    data.push([data_city,data_num]);
+  }
+    //console.log(data);
   /*
   data = [
     ["北京", 90],
@@ -57,7 +71,10 @@ function getData() {
  * 返回一个排序后的数组
  */
 function sortAqiData(data) {
-
+  data.sort(function(a,b){
+     return b[1]-a[1];
+  })
+  return data;
 }
 
 /**
@@ -66,9 +83,20 @@ function sortAqiData(data) {
  * 格式见ul中的注释的部分
  */
 function render(data) {
-
+  data.forEach((data,index)=>{
+     var new_li=document.createElement("li");
+     var new_b=document.createElement("b");
+     new_b.innerHTML=data[1];
+     var chinese = new Array('一','二','三','四','五','六','七','八','九','十');
+     new_li.innerHTML="第"+chinese[index]+"名："+data[0]+"空气质量：";
+     new_li.appendChild(new_b);
+     console.log(new_li);
+     dom_ul= document.getElementById("resort");
+     dom_ul.appendChild(new_li);
+     // console.log(data);
+  })
 }
-
+// render(sortAqiData(getData()));
 function btnHandle() {
   var aqiData = getData();
   aqiData = sortAqiData(aqiData);
@@ -78,7 +106,10 @@ function btnHandle() {
 function init() {
 
   // 在这下面给sort-btn绑定一个点击事件，点击时触发btnHandle函数
-
+  var btn=document.getElementById("sort-btn");
+  btn.onclick=function(){
+      btnHandle();
+  }
 }
 
 init();

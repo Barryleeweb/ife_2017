@@ -3,32 +3,68 @@
   <head>
     <meta charset="utf-8">
     <title>IFE JavaScript Task 01</title>
+    <style type="text/css">
+     *{margin: 0px;padding: 0px;}
+      p{float:left;width: 50px;height: 50px;background-color: red;color: white;text-align: center;line-height: 50px;margin: 5px;}
+      button{background-color: white;border: 1px solid #ccc;border-radius: 3px;cursor: pointer; }
+
+    </style>
   </head>
 <body>
 
-  <label>请输入北京今天空气质量：<input id="aqi-input" type="text"></label>
-  <button id="button">确认填写</button>
+    <div>
+      <input type="text" id="input_data">
+      <button id="left_in">左侧入</button>
+      <button id="right_in">右侧入</button>
+      <button id="left_out">左侧出</button>
+      <button id="right_out">右侧出</button>
+    </div>
+    <div id="append_div">
 
-  <div>您输入的值是：<span id="aqi-display">尚无录入</span></div>
+    </div>
 
 <script type="text/javascript">
+(function () {
+    var left_in=document.getElementById("left_in");
+    var right_in=document.getElementById("right_in");
+    var left_out=document.getElementById("left_out");
+    var right_out=document.getElementById("right_out");
+    // 创建新节点并赋值
+    function createdom(){
+       var new_dom=document.createElement("p");
+       var input_data=document.getElementById("input_data");
+       if(input_data.value==''){
+          alert("请输入数值");
+          return ;
+       }
+       else{
+          new_dom.innerHTML=input_data.value;
+       }
+       //console.log(new_dom);
+       return new_dom;
 
-(function() {
-  /*    
-  在注释下方写下代码
-  给按钮button绑定一个点击事件
-  在事件处理函数中
-  获取aqi-input输入的值，并显示在aqi-display中
-  */
-  var input = document.getElementById("aqi-input");
-  var display = document.getElementById("aqi-display");
-  var btn = document.getElementById("button");
-  btn.onclick=function(){
-     display.innerHTML = input.value;
-  };
-  	 
+    }
+    // 根据不同的按钮，选择不同的节点添加删除方式
+    var append_div=document.getElementById("append_div");
+    left_in.onclick = function(){
+       var new_dom=createdom();
+       if(new_dom){
+         append_div.insertBefore(new_dom,append_div.firstChild);
+       }
+    }
+    right_in.onclick = function(){
+       var new_dom=createdom();
+       if(new_dom){
+         append_div.appendChild(new_dom);
+       } 
+    }
+    left_out.onclick = function(){
+       append_div.removeChild(append_div.firstChild);
+    }
+    right_out.onclick = function(){
+       append_div.removeChild(append_div.lastChild);
+    }
 })();
-
 </script>
 </body>
 </html>
