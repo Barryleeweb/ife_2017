@@ -3,32 +3,103 @@
   <head>
     <meta charset="utf-8">
     <title>IFE JavaScript Task 01</title>
+    <style type="text/css">
+     *{margin: 0px;padding: 0px;}
+      p{float:left;width: 20px;background-color: red;color: white;text-align: center;margin: 5px;}
+      button{background-color: white;border: 1px solid #ccc;border-radius: 3px;cursor: pointer;margin-right: 5px;}
+
+    </style>
   </head>
 <body>
 
-  <label>请输入北京今天空气质量：<input id="aqi-input" type="text"></label>
-  <button id="button">确认填写</button>
+    <div>
+      <textarea id="input_data" placeholder="请输入多个内容并间隔"></textarea>
+      <button id="left_in">左侧入</button>
+      <button id="right_in">右侧入</button>
+      <button id="left_out">左侧出</button>
+      <button id="right_out">右侧出</button>
+      <input type="text" id="input_search">
+      <button id="search">查询</button>
+    </div>
+    <div id="append_div" style="overflow: auto;height: 100px;">
 
-  <div>您输入的值是：<span id="aqi-display">尚无录入</span></div>
+    </div>
 
 <script type="text/javascript">
+(function () {
+    var left_in=document.getElementById("left_in");
+    var right_in=document.getElementById("right_in");
+    var left_out=document.getElementById("left_out");
+    var right_out=document.getElementById("right_out");
+    var search=document.getElementById("search");
+    var input_search=document.getElementById("input_search");
+    // 创建新节点并赋值
+    function gettext(){
+      var input_data=document.getElementById("input_data").value;
+      if(input_data==''){
+         alert("请输入数值");
+      }
+      else{   
+        input_data=input_data.replace(/[^0-9a-zA-Z\u4E00-\u9FA5]/g, ',');  // /[^0-9a-zA-Z]/g [^]范围外，g全局替换，\u4E00-\u9FA5中文
+        return input_data.split(',');
+      }
+    }
 
-(function() {
-  /*    
-  在注释下方写下代码
-  给按钮button绑定一个点击事件
-  在事件处理函数中
-  获取aqi-input输入的值，并显示在aqi-display中
-  */
-  var input = document.getElementById("aqi-input");
-  var display = document.getElementById("aqi-display");
-  var btn = document.getElementById("button");
-  btn.onclick=function(){
-     display.innerHTML = input.value;
-  };
-  	 
+    // 根据不同的按钮，选择不同的节点添加删除方式
+    var append_div=document.getElementById("append_div");
+    left_in.onclick = function(){
+        var data=gettext();
+        data.forEach(d=>{
+          var new_dom=document.createElement("p");
+          new_dom.innerHTML=d;
+          console.log(d);
+          append_div.insertBefore(new_dom,append_div.firstChild);
+        })
+    }
+    right_in.onclick = function(){
+        var data=gettext();
+        data.forEach(d=>{
+          var new_dom=document.createElement("p");
+          new_dom.innerHTML=d;
+          console.log(d);
+          append_div.insertBefore(new_dom,append_div.lastChild);
+        }) 
+    }
+    left_out.onclick = function(){
+       append_div.removeChild(append_div.firstChild);
+    }
+    right_out.onclick = function(){
+       append_div.removeChild(append_div.lastChild);
+    }
+    function getdata(){
+      var ps=append_div.getElementsByTagName("p");
+      var data=[];
+      for(var i=0;i<ps.length;i++){
+        var p_data=parseInt(ps[i].style.height);
+        data.push(p_data);
+      }
+      return data;
+    }
+    search.onclick = function(){
+      var s_value= input_search.value;
+      console.log("s_value:"+s_value);
+      if(s_value==null){
+        alert("请输入查询字符");
+      }
+      else{
+        var pattern=new RegExp(s_value);
+        Array.prototype.forEach.call(append_div.childNodes,function(elem){
+          console.log(elem);
+          console.log("321:"+pattern.test(elem.innerHTML));
+          if(pattern.test(elem.innerHTML)){
+            elem.style.color= "blue";
+          }
+        })
+      }
+      
+
+    }
 })();
-
 </script>
 </body>
 </html>
