@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Vue_2</title>
+</head>
+<body>
+<script>
+	function Observer (data) {
+	  //暂不考虑数组
+	  this.data = data;
+	  this.makeObserver(data);
+	  this.eventsBus = new Event();
+	}
+    //通过get及set打印访问或者改变信息
+	Observer.prototype.setterAndGetter = function (key, val) {
+	  let _this = this;
+	  Object.defineProperty(this.data, key, {
+	    enumerable: true,
+	    configurable: true,
+	    get: function(){
+	      console.log('你访问了' + key);
+	      return val;
+	    },
+	    set: function(newVal){
+	      console.log('你设置了' + key);
+	      console.log('新的' + key + '=' + newVal);
+	      //触发$watch函数
+	      _this.eventsBus.emit(key, val, newVal);
+	      val = newVal;
+	      //如果newval是对象的话  问题2：如果设置新的值是一个对象的话
+	      if(typeof newVal === 'object'){
+	        new Observer(val);
+	      }
+	    }
+	  })
+	}
+    // 遍历对象属性
+	Observer.prototype.makeObserver = function (obj) {
+	  let val;
+	  for(let key in obj){
+	    if(obj.hasOwnProperty(key)){
+	      val = obj[key];
+	      //深度遍历  问题1：如果传入参数对象是一个“比较深”的对象
+	      if(typeof val === 'object'){
+	        new Observer(val);
+	      }
+	    }
+	    this.setterAndGetter(key, val);
+	  }
+	}
+	Observer.prototype.$watch = function(attr, callback){
+	  this.eventsBus.on(attr, callback);
+	}
+    // 我们需要实现$watch这个API，每当年龄发生改变的时候触发相应的回调函数。这个API的实现可以很有多种方式，在此我们采用事件的方式来实现，通俗的讲就是实现一个通用的事件模型，每次$watch一个属性相当于注册了一个监听事件，当属性发生改变的则触发对应的事件，这样做的优势是可以为同一个属性通过事件模型来注册多个回调函数。
+    //问题3：考虑传递回调函数
+    function Event(){
+      this.events = {};
+	}
+	Event.prototype.on = function(attr, callback){
+	  if(this.events[attr]){
+	    this.events[attr].push(callback);
+	  }else{
+	    this.events[attr] = [callback];
+	  }
+	}
+	Event.prototype.off = function(attr){
+	  for(let key in this.events){
+	    if(this.events.hasOwnProperty(key) && key === attr){
+	      delete this.events[key];
+	    }
+	  }
+	}
+	Event.prototype.emit = function(attr, ...arg){
+	  this.events[attr] && this.events[attr].forEach(function(item){
+	    item(...arg);
+	  })
+	}
+
+    // 测试
+	let app = new Observer({
+	    name: 'liujianhuan',
+	    age: 25,
+	    company: 'Qihoo 360',
+	    address: 'Chaoyang, Beijing'
+	})
+
+	app.$watch('age', function(oldVal, newVal){
+	    console.log(`我的年龄变了，原来是: ${oldVal}岁，现在是：${newVal}岁了`)
+	})
+
+	app.$watch('age', function(oldVal, newVal){
+	    console.log(`我的年龄真的变了诶，竟然年轻了${oldVal - newVal}岁`)
+	})
+
+	app.data.basicInfo.age = 20;
+	// 总结未解决问题；
+	//1.当传入的参数为数组时，如何监听数组对象的变化
+    //2.深层对象属性的事件回调监听，或者描述为：对象的深层属性值发生变化后如何向上传递到顶层
+    //3.动态数据与视图的绑定，如何绑定，当数据变化后如何触发视图的自动刷新。
+
+	</script>
+</body>
+</html> 
+
