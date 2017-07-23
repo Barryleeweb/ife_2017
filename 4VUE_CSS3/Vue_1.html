@@ -5,12 +5,15 @@
 	<title>Vue_1</title>
 </head>
 <body>
+
+</body>
 <script>
     function Observer (data) {
       //暂不考虑数组
       this.data = data;
       this.makeObserver(data);
     }
+    // （有些定义为convert()函数）
     Observer.prototype.setterAndGetter = function (key, val) {
       //此为问题一的要点
       Object.defineProperty(this.data, key, {
@@ -27,6 +30,7 @@
         }
       })
     }
+    //（有些定义为walk()函数）
     Observer.prototype.makeObserver = function (obj) {
       let val;
       //此为问题二的要点
@@ -55,6 +59,5 @@
     app2.data.university // 你访问了 university
     app2.data.major = 'science'  // 你设置了 major，新的值为 science
 </script>
-</body>
 </html> 
 

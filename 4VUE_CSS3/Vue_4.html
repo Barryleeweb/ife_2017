@@ -2,11 +2,9 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Vue_2</title>
+	<title>Vue_4</title>
 </head>
 <body>
-
-</body>
 <script>
 	function Observer (data) {
 	  //暂不考虑数组
@@ -14,7 +12,7 @@
 	  this.makeObserver(data);
 	  this.eventsBus = new Event();
 	}
-    //通过get及set打印访问或者改变信息（有些为convert()函数）
+    //通过get及set打印访问或者改变信息
 	Observer.prototype.setterAndGetter = function (key, val) {
 	  let _this = this;
 	  Object.defineProperty(this.data, key, {
@@ -37,7 +35,7 @@
 	    }
 	  })
 	}
-    // 遍历对象属性 递归的思路（有些为walk()函数）
+    // 遍历对象属性
 	Observer.prototype.makeObserver = function (obj) {
 	  let val;
 	  for(let key in obj){
@@ -59,7 +57,7 @@
     function Event(){
       this.events = {};
 	}
-	Event.prototype.on = function(attr, callback){// 对象handlers存储key：事件名handlers及value：函数handler
+	Event.prototype.on = function(attr, callback){
 	  if(this.events[attr]){
 	    this.events[attr].push(callback);
 	  }else{
@@ -73,9 +71,9 @@
 	    }
 	  }
 	}
-	Event.prototype.emit = function(attr, ...arg){  // ...可用于函数传参，替代call及apply
-	  this.events[attr] && this.events[attr].forEach(function(item){// 遍历事件名的所有回调函数
-	    item(...arg);                               // 将参数传入回调函数
+	Event.prototype.emit = function(attr, ...arg){
+	  this.events[attr] && this.events[attr].forEach(function(item){
+	    item(...arg);
 	  })
 	}
 
@@ -101,6 +99,7 @@
     //2.深层对象属性的事件回调监听，或者描述为：对象的深层属性值发生变化后如何向上传递到顶层
     //3.动态数据与视图的绑定，如何绑定，当数据变化后如何触发视图的自动刷新。
 
-</script>
+	</script>
+</body>
 </html> 
 
