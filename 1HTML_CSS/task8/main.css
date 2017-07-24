@@ -1,17 +1,61 @@
 *{margin:0px;padding: 0px;font-family: "微软雅黑"}
 
-body{
-    background-color: #fff;
+/*-- The Container -- */ 
+.grid-container{
+  width: 100%; 
+  max-width: 1200px;   
 }
 
-.all{
-  width: 980px;
-  height: 1386px;
-  margin: 0 auto;
-  background-color:#eee;
+/*-- The Row -- */ 
+/*-- our cleafix hack -- */ 
+.row:before, 
+.row:after {
+  content:"";
+  display: table ;
+  clear:both;
 }
 
-.wrap{
-  margin: 0px 44px 0px 44px;
+/*-- The Column , Column Positioning , Column Widths , Column Gutters -- */ 
+.grid-container *{
+  box-sizing: border-box;  /*-- setting border box on all elements inside the grid --*/
+}
 
+[class*='col-'] {      /* a[src*="abc"] 选择其 src 属性中包含 "abc" 子串的每个 <a> 元素。*/
+  float: left; 
+  min-height: 1px; 
+  width: 16.66%; 
+  /*-- Column gutter -- */
+  padding: 10px; 
+ /* background-color: #FFDCDC;*/
+}
+@media all and (min-width:769px){
+	.col-md-1{ width: 8.33%; }
+	.col-md-2{ width: 16.66%; }
+	.col-md-3{ width: 25%;    }
+	.col-md-4{ width: 33.33%; }
+	.col-md-6{ width: 50%;   }
+}
+/*screens under 800px*/
+@media all and (max-width:768px){
+  .col-sm-2{ width: 16.66%;   }
+  .col-sm-3{ width: 25%;      }
+  .col-sm-6{ width: 50%;      }
+  .col-sm-8{ width: 66.66%;   }
+  .col-sm-12{ width: 100%;    }
+}
+
+.outline{
+  outline: 1px solid #999; 
+}
+
+/*-- some extra column content styling --*/
+[class*='col-'] > p {
+background-color: #eee; 
+padding: 0;
+margin: 0;
+text-align: center; 
+color: red; 
+height: 50px;
+line-height: 50px;
+border: 1px solid #999;
 }
