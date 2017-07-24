@@ -1,0 +1,47 @@
+*{margin:0px;padding: 0px;font-family: "微软雅黑"}
+
+/*-- The Container -- */ 
+.container{
+  width: 95%; /*设置成100%不可以*/
+  border: 1px solid #999;  
+  padding: 20px; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /*screens under 640px，挤到下一行*/
+/*  flex-direction: row;
+  flex-wrap: wrap;
+  overflow: visible;*/
+}
+
+.box1,.box2,.box3{
+  border: 1px solid red; 
+  padding: 20px; 
+}
+
+.box1{
+  width: 150px;
+  height: 120px;
+}
+
+.box2{
+  width: 150px;
+  height: 100px;
+}
+
+.box3{
+  width: 150px;
+  height: 40px;  
+}
+
+.box4{
+  width: 150px;
+  height: 200px; 
+  border: 1px solid blue;   
+}
+
+/*screens under 640px*/
+@media all and (max-width:640px){
+   .container{align-items: flex-start;}
+   .box1,.box2,.box3{order: 1;}
+}
