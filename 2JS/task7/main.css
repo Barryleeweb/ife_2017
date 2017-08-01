@@ -1,28 +1,53 @@
-*{margin:0px;padding:0px;}
-
-#layer1,#layer2,#layer3,#layer4{
-   display: flex;
-   justify-content: space-around;
-   align-items: center;
-   border: 1px solid #000;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-#layer1{
-   width: 730px;
-   height: 240px;
+/*1.set div style*/
+.show{
+  float: left;
+  position: relative;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 150px;
+}
+div{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #fff;  /*必须设置，不然遍历时变为背景色*/
+  width: 45%;
+  height: 80%;
+  border: 2px solid #000;
+  border-radius: 4px;
 }
 
-#layer2{
-   width: 340px;
-   height: 200px; 
+/*2.set form style*/
+form{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 70px;
+  width: 100%;
 }
+button[id*="btn-"]{
+  display: inline-block;
+  margin: 0 10px;
+  width: 70px;
+  height: 30px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  background: #fff;
+  font-weight: bold;
+  line-height: 26px;
+  color: red;
+  cursor: pointer;
 
-#layer3{
-  width: 135px;
-  height: 160px; 
 }
-
-#layer4{
-  width: 52.5px;
-  height: 120px;	
+button[id*="btn-"]:hover,button[id*="btn-"]:focus{
+  color: #fff;
+  background: red;
 }
